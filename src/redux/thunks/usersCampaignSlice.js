@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import dayjs from 'dayjs';
-import isBetween from 'dayjs/plugin/isBetween';
-dayjs.extend(isBetween);
 
 const initialState = {
   list: [],
-  filteredList: [],
   loading: false,
   error: null,
+  filters: {
+    name: '',
+    dateRange: [],
+  },
 };
 
 const usersCampaignSlice = createSlice({
@@ -30,30 +30,14 @@ const usersCampaignSlice = createSlice({
       state.loading = false;
     },
     filterCampaignsByName(state, action) {
-      const filteredData = state.list.filter(campaign =>
-        campaign.name.toLowerCase().includes(action.payload.toLowerCase())
-      );
-      state.filteredList = filteredData;
+      state.filters.name = action.payload;
     },
     filterCampaignsByDateRange(state, action) {
-      if (!action.payload.length) return state.list;
-
-      const filteredData = state.list.filter((campaign) => {
-        const start = dayjs(campaign.startDate, 'M/D/YYYY');
-        const end = dayjs(campaign.endDate, 'M/D/YYYY');
-        const [rangeStart, rangeEnd] = action.payload;
-
-        return (
-          start.isBetween(rangeStart, rangeEnd, null, '[]') ||
-          end.isBetween(rangeStart, rangeEnd, null, '[]')
-        );
-      });
-      state.filteredList = filteredData;
+      state.filters.dateRange = action.payload;
     },
     addCampaigns: (state, action) => {
       const newCampaigns = action.payload;
       state.list = [...state.list, ...newCampaigns];
-      state.filteredList = [...state.filteredList, ...newCampaigns];
     },
     resetState: () => initialState,
   },

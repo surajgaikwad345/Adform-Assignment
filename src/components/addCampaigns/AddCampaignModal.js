@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Form, Input, DatePicker, InputNumber, Button } from 'antd';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
-import { addCampaigns } from '../redux/thunks/usersCampaignSlice';
+import { addCampaigns } from '../../redux/thunks/usersCampaignSlice';
 
 const { RangePicker } = DatePicker;
 

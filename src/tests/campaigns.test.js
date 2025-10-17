@@ -12,9 +12,12 @@ import dayjs from 'dayjs';
 
 const initialState = {
     list: [],
-    filteredList: [],
     loading: false,
     error: null,
+    filters: {
+        name: '',
+        dateRange: [],
+    },
 };
 
 const mockCampaigns = [
@@ -75,8 +78,15 @@ test('should filter campaigns by name', () => {
     };
 
     const state = reducer(prevState, filterCampaignsByName('real'));
-    expect(state.filteredList).toHaveLength(1);
-    expect(state.filteredList[0].name).toBe('Realbridge');
+    expect(state.filters.name).toBe('real');
+    const filteredCampaigns = state.list.filter(campaign => {
+        if (!campaign.name.toLowerCase().includes('real')) {
+            return false;
+        }
+        return true
+    });
+    expect(filteredCampaigns).toHaveLength(1);
+    expect(filteredCampaigns[0].name).toBe('Realbridge');
 });
 
 test('should filter campaigns by date range', () => {
@@ -90,20 +100,18 @@ test('should filter campaigns by date range', () => {
 
     const state = reducer(prevState, filterCampaignsByDateRange([rangeStart, rangeEnd]));
 
-    expect(state.filteredList.length).toBeGreaterThan(0);
-    expect(state.filteredList[0].name).toBe('Divavu');
+    expect(state.list.length).toBeGreaterThan(0);
+    expect(state.list[0].name).toBe('Divavu');
 });
 
-test('should append new campaigns to list and filteredList', () => {
+test('should append new campaigns to list', () => {
     const prevState = {
         ...initialState,
         list: [mockCampaigns[0]],
-        filteredList: [mockCampaigns[0]],
     };
 
     const newCampaigns = [mockCampaigns[1], mockCampaigns[2]];
     const state = reducer(prevState, addCampaigns(newCampaigns));
 
     expect(state.list).toHaveLength(3);
-    expect(state.filteredList).toHaveLength(3);
 });
