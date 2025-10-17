@@ -52,6 +52,10 @@
 .Header-filters {
   display: flex;
   gap: 10px;
+
+  .ant-input-suffix {
+    display: none;
+  }
 }
 
 .CampaignDetails button,
