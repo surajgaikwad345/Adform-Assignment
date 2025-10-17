@@ -1,3 +1,16 @@
+# This is an assignment for Adform interview process.
+This project is a React + Redux application built as part of a technical assignment. It displays a list of marketing campaigns with full filtering, validation, and user enhancement features, developed with production-level standards.
+
+# Tech Stack
+- **React**
+- **Redux Toolkit + Thunk**
+- **Ant Design (UI framework)**
+- **Day.js (date handling)**
+- **Jest + React Testing Library (unit tests)**
+
+# Live Demo
+URL: https://adform-assignment-nu.vercel.app/
+
 # Getting Started with Create React App and Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
