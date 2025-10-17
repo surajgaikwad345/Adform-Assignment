@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Form, Input, DatePicker, InputNumber, Select, Button } from 'antd';
+import { Modal, Form, Input, DatePicker, InputNumber, Button } from 'antd';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
 import { addCampaigns } from '../redux/thunks/usersCampaignSlice';
