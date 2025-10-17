@@ -1,18 +1,21 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import usersCampaignStore from './redux/store/usersCampaignStore';
+import ErrorWrapper from './errorBoundaries/ErrorWrapper';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
+    <Provider store={usersCampaignStore}>
+      <ErrorWrapper>
+        <App />
+      </ErrorWrapper>
     </Provider>
   </React.StrictMode>
 );
